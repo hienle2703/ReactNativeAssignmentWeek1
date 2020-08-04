@@ -1,0 +1,50 @@
+
+<script>
+    var pastResult ='';
+    var count= 10; 
+    var number = Math.floor(Math.random() * 101);
+    function replay(){
+        location.reload();
+    }
+    function getText() {
+        
+        
+        var input = document.getElementById("txtname").value;
+        if(count ==1)
+        {
+            alert('You Loseeeee. The correct answer is '+ number +' ');
+            location.reload();
+        }
+        if (input == number) {
+            //console.log("Yay bạn đã đoán đúng");
+            document.getElementById("result").innerHTML="That's Righttttttttt";
+            document.getElementById("result").style.backgroundColor="green";
+            document.getElementById("replay").style.visibility="visible";
+        }
+        else if (input > number) {
+            count--;
+            //console.log("Lớn hơn rồi mời nhập lại");
+            document.getElementById("result").innerHTML="Too High. Try Again! You have "+ count +" counts left";
+            document.getElementById("result").style.backgroundColor="red";           
+        }
+        else if (input < number) {
+            count--;
+            //console.log("Nhỏ hơn rồi mời nhập lại");
+            document.getElementById("result").innerHTML="Too Small. Try Again!You have "+ count +" counts left";
+            document.getElementById("result").style.backgroundColor="red";
+        }
+        //document.getElementById("history").innerHTML=input;
+        pastResult = pastResult + input + '<br>';
+        document.getElementById("history").innerHTML=pastResult;
+    }
+</script>
+
+<p id="result">Guess the number</p>
+
+<input type="text" id="txtname" />
+<button onclick="getText()">Guess!</button>
+
+<p>Your Guess History</p>
+<p id="history"></p>
+
+<button id="replay" style="visibility:hidden;" onclick="replay()">Replay!</button>
